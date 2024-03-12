@@ -235,7 +235,6 @@ struct ConfettiView: View{
                     }
                 }
             }
-            .ignoresSafeArea()
     }
     
     func deg2rad(_ number: CGFloat) -> CGFloat {
@@ -271,6 +270,7 @@ struct ConfettiAnimationView: View {
                     firstAppear = true
                 }
             }
+            .ignoresSafeArea()
     }
 }
 
