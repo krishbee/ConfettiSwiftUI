@@ -211,6 +211,7 @@ struct ConfettiView: View{
         ConfettiAnimationView(shape:getShape(), color:getColor(), spinDirX: getSpinDirection(), spinDirZ: getSpinDirection())
             .offset(x: location.x, y: location.y)
             .opacity(opacity)
+            .ignoresSafeArea()
             .onAppear(){
                 withAnimation(getAnimation()) {
                     opacity = confettiConfig.opacity
@@ -235,7 +236,6 @@ struct ConfettiView: View{
                     }
                 }
             }
-            .ignoresSafeArea()
     }
     
     func deg2rad(_ number: CGFloat) -> CGFloat {
@@ -271,6 +271,7 @@ struct ConfettiAnimationView: View {
                     firstAppear = true
                 }
             }
+            .ignoresSafeArea()
     }
 }
 
