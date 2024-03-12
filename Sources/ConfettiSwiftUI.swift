@@ -157,6 +157,7 @@ struct ConfettiContainer: View {
                 ConfettiView(confettiConfig: confettiConfig)
             }
         }
+        .ignoresSafeArea()
         .onAppear(){
             if firstAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + confettiConfig.animationDuration) {
@@ -211,7 +212,6 @@ struct ConfettiView: View{
         ConfettiAnimationView(shape:getShape(), color:getColor(), spinDirX: getSpinDirection(), spinDirZ: getSpinDirection())
             .offset(x: location.x, y: location.y)
             .opacity(opacity)
-            .ignoresSafeArea()
             .onAppear(){
                 withAnimation(getAnimation()) {
                     opacity = confettiConfig.opacity
@@ -260,6 +260,7 @@ struct ConfettiAnimationView: View {
     
     var body: some View {
         shape
+            .ignoresSafeArea()
             .foregroundColor(color)
             .rotation3DEffect(.degrees(move ? 360:0), axis: (x: spinDirX, y: 0, z: 0))
             .animation(Animation.linear(duration: xSpeed).repeatCount(10, autoreverses: false), value: move)
@@ -271,7 +272,6 @@ struct ConfettiAnimationView: View {
                     firstAppear = true
                 }
             }
-            .ignoresSafeArea()
     }
 }
 
