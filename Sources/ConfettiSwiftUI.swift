@@ -209,8 +209,11 @@ struct ConfettiView: View{
 
     var body: some View{
         ConfettiAnimationView(shape:getShape(), color:getColor(), spinDirX: getSpinDirection(), spinDirZ: getSpinDirection())
+            .ignoresSafeArea()
             .offset(x: location.x, y: location.y)
+            .ignoresSafeArea()
             .opacity(opacity)
+            .ignoresSafeArea()
             .onAppear(){
                 withAnimation(getAnimation()) {
                     opacity = confettiConfig.opacity
@@ -235,6 +238,7 @@ struct ConfettiView: View{
                     }
                 }
             }
+            .ignoresSafeArea()
     }
     
     func deg2rad(_ number: CGFloat) -> CGFloat {
@@ -259,24 +263,17 @@ struct ConfettiAnimationView: View {
     
     var body: some View {
         shape
-            .ignoresSafeArea()
             .foregroundColor(color)
-            .ignoresSafeArea()
             .rotation3DEffect(.degrees(move ? 360:0), axis: (x: spinDirX, y: 0, z: 0))
-            .ignoresSafeArea()
             .animation(Animation.linear(duration: xSpeed).repeatCount(10, autoreverses: false), value: move)
-            .ignoresSafeArea()
             .rotation3DEffect(.degrees(move ? 360:0), axis: (x: 0, y: 0, z: spinDirZ), anchor: UnitPoint(x: anchor, y: anchor))
-            .ignoresSafeArea()
             .animation(Animation.linear(duration: zSpeed).repeatForever(autoreverses: false), value: move)
-            .ignoresSafeArea()
             .onAppear() {
                 if firstAppear {
                     move = true
                     firstAppear = true
                 }
             }
-            .ignoresSafeArea()
     }
 }
 
