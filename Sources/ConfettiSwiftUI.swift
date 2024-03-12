@@ -259,10 +259,15 @@ struct ConfettiAnimationView: View {
     
     var body: some View {
         shape
+            .ignoresSafeArea()
             .foregroundColor(color)
+            .ignoresSafeArea()
             .rotation3DEffect(.degrees(move ? 360:0), axis: (x: spinDirX, y: 0, z: 0))
+            .ignoresSafeArea()
             .animation(Animation.linear(duration: xSpeed).repeatCount(10, autoreverses: false), value: move)
+            .ignoresSafeArea()
             .rotation3DEffect(.degrees(move ? 360:0), axis: (x: 0, y: 0, z: spinDirZ), anchor: UnitPoint(x: anchor, y: anchor))
+            .ignoresSafeArea()
             .animation(Animation.linear(duration: zSpeed).repeatForever(autoreverses: false), value: move)
             .ignoresSafeArea()
             .onAppear() {
@@ -271,6 +276,7 @@ struct ConfettiAnimationView: View {
                     firstAppear = true
                 }
             }
+            .ignoresSafeArea()
     }
 }
 
