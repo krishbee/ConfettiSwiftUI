@@ -127,9 +127,11 @@ public struct ConfettiCannon: View {
                 )
             }
         }
+        .ignoresSafeArea()
         .onAppear(){
             firstAppear = true
         }
+        .ignoresSafeArea()
         .onChange(of: counter){value in
             if firstAppear{
                 for i in 0...confettiConfig.repetitions{
@@ -142,6 +144,7 @@ public struct ConfettiCannon: View {
                 }
             }
         }
+        .ignoresSafeArea()
     }
 }
 
@@ -155,8 +158,10 @@ struct ConfettiContainer: View {
         ZStack{
             ForEach(0...confettiConfig.num-1, id:\.self){_ in
                 ConfettiView(confettiConfig: confettiConfig)
+                    .ignoresSafeArea()
             }
         }
+        .ignoresSafeArea()
         .onAppear(){
             if firstAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + confettiConfig.animationDuration) {
@@ -165,6 +170,7 @@ struct ConfettiContainer: View {
                 firstAppear = false
             }
         }
+        .ignoresSafeArea()
     }
 }
 
@@ -209,11 +215,8 @@ struct ConfettiView: View{
 
     var body: some View{
         ConfettiAnimationView(shape:getShape(), color:getColor(), spinDirX: getSpinDirection(), spinDirZ: getSpinDirection())
-            .ignoresSafeArea()
             .offset(x: location.x, y: location.y)
-            .ignoresSafeArea()
             .opacity(opacity)
-            .ignoresSafeArea()
             .onAppear(){
                 withAnimation(getAnimation()) {
                     opacity = confettiConfig.opacity
@@ -238,7 +241,6 @@ struct ConfettiView: View{
                     }
                 }
             }
-            .ignoresSafeArea()
     }
     
     func deg2rad(_ number: CGFloat) -> CGFloat {
