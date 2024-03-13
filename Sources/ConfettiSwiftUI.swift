@@ -267,10 +267,10 @@ struct ConfettiAnimationView: View {
             .animation(Animation.linear(duration: zSpeed).repeatForever(autoreverses: false), value: move)
             .onAppear() {
                 if firstAppear {
-                    self.rotateObject()
                     move = true
                     firstAppear = true
                 }
+                self.rotateObject()
             }
     }
     
