@@ -261,17 +261,33 @@ struct ConfettiAnimationView: View {
         shape
             .foregroundColor(color)
 //            .rotationEffect(Angle(degrees: move ? 360 : 0), anchor: UnitPoint(x: anchor, y: anchor))
-            .rotation3DEffect(.degrees(move ? 360:0), axis: (x: spinDirX, y: 0, z: 0))
+//            .rotation3DEffect(.degrees(move ? 360:0), axis: (x: spinDirX, y: 0, z: 0))
             .animation(Animation.linear(duration: xSpeed).repeatCount(10, autoreverses: false), value: move)
             .rotation3DEffect(.degrees(move ? 360:0), axis: (x: 0, y: 0, z: spinDirZ), anchor: UnitPoint(x: anchor, y: anchor))
             .animation(Animation.linear(duration: zSpeed).repeatForever(autoreverses: false), value: move)
             .onAppear() {
                 if firstAppear {
+                    self.rotateObject()
                     move = true
                     firstAppear = true
                 }
             }
     }
+    
+    func rotateObject() {
+            let animation = CABasicAnimation(keyPath: "transform")
+            animation.fromValue = CATransform3DMakeRotation(0, 1, 0, 0)
+            animation.toValue = CATransform3DMakeRotation(.pi, 1, 0, 0)
+            animation.duration = 1.0
+            animation.repeatCount = .infinity
+            animation.autoreverses = true
+
+            let layer = CALayer()
+            layer.add(animation, forKey: "rotation")
+            
+            // Apply the transform directly to the view's layer
+            layer.transform = CATransform3DMakeRotation(CGFloat(0), 1, 0, 0)
+        }
 }
 
 class ConfettiConfig: ObservableObject {
