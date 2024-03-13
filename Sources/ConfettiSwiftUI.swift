@@ -260,22 +260,16 @@ struct ConfettiAnimationView: View {
     var body: some View {
         shape
             .foregroundColor(color)
-            .ignoresSafeArea(.keyboard, edges: .bottom)
             .rotation3DEffect(.degrees(move ? 360:0), axis: (x: spinDirX, y: 0, z: 0))
-            .ignoresSafeArea(.keyboard, edges: .bottom)
             .animation(Animation.linear(duration: xSpeed).repeatCount(10, autoreverses: false), value: move)
-            .ignoresSafeArea(.keyboard, edges: .bottom)
             .rotation3DEffect(.degrees(move ? 360:0), axis: (x: 0, y: 0, z: spinDirZ), anchor: UnitPoint(x: anchor, y: anchor))
-            .ignoresSafeArea(.keyboard, edges: .bottom)
             .animation(Animation.linear(duration: zSpeed).repeatForever(autoreverses: false), value: move)
-            .ignoresSafeArea(.keyboard, edges: .bottom)
             .onAppear() {
                 if firstAppear {
                     move = true
                     firstAppear = true
                 }
             }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
