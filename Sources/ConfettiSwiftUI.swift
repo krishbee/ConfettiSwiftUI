@@ -260,7 +260,7 @@ struct ConfettiAnimationView: View {
     var body: some View {
         shape
             .foregroundColor(color)
-            .rotationEffect(.degrees(move ? 360:0), anchor: UnitPoint(x: anchor, y: anchor))
+            .rotationEffect(Angle(degrees: move ? 360 : 0), anchor: UnitPoint(x: anchor, y: anchor))
 //            .rotation3DEffect(.degrees(move ? 360:0), axis: (x: spinDirX, y: 0, z: 0))
             .animation(Animation.linear(duration: xSpeed).repeatCount(10, autoreverses: false), value: move)
             .rotation3DEffect(.degrees(move ? 360:0), axis: (x: 0, y: 0, z: spinDirZ), anchor: UnitPoint(x: anchor, y: anchor))
