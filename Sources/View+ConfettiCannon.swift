@@ -75,7 +75,6 @@ public extension View {
                 repetitions: repetitions,
                 repetitionInterval: repetitionInterval
             )
-            .ignoresSafeArea()
         }
     }
 }
